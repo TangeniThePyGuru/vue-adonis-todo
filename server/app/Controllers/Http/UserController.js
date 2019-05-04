@@ -6,7 +6,8 @@ class UserController {
 
   async login({ request, auth }){
     const { email, password } = request.all()
-    const token = await auth.attempt(email, password)
+    const token = await auth.withRefreshToken()
+                            .attempt(email, password)
     return token;
   }
 
@@ -20,6 +21,13 @@ class UserController {
     })
 
     return user
+  }
+
+  async refresh({request, auth}){
+    const { refresh_token } = request.all();
+
+    return await auth.newRefreshToken()
+                     .generateForRefreshToken(refresh_token)
   }
 }
 
