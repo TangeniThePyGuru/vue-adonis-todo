@@ -19,5 +19,7 @@ const Route = use('Route')
 Route.group(() => {
     Route.post('auth/register', 'UserController.register')
     Route.post('auth/login', 'UserController.login')
+
+    Route.resource('projects', 'ProjectController').middleware('auth')
 })
   .prefix('api')
