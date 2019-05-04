@@ -22,7 +22,7 @@ class ProjectController {
    */
   async index ({ request, response, view, auth }) {
     const user = await auth.getUser();
-    console.log(user.projects())
+
     return user.projects().fetch()
   }
 
@@ -50,30 +50,6 @@ class ProjectController {
   }
 
   /**
-   * Display a single project.
-   * GET projects/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show ({ params, request, response, view }) {
-  }
-
-  /**
-   * Render a form to update an existing project.
-   * GET projects/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
-
-  /**
    * Update project details.
    * PUT or PATCH projects/:id
    *
@@ -81,7 +57,16 @@ class ProjectController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update ({ params, request, response, auth }) {
+    const user = await auth.getUser()
+    const { id } = params
+    const project = await Project.find(id)
+    AuthorizationService.verifyPermission(project, user)
+    project.merge(request.only('name'))
+    await project.save();
+
+    return project
+
   }
 
   /**
