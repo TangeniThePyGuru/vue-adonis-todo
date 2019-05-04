@@ -101,7 +101,8 @@ class ProjectController {
 
     // only the project creater can delete this project
     AuthorizationService.verifyPermission(project, user)
-    project.delete(id)
+
+    await project.delete(id)
 
     return project
   }
