@@ -73,7 +73,23 @@ class TaskController extends BaseController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update ({ params, request, response, auth }) {
+    const user = await auth.getUser()
+    const project = await Project.find(params.projectId)
+
+    const task = await Task.findOrFail(params.id)
+    AuthorizationService.verifyPermission(project, user)
+
+    task.merge(
+      request.only(['description', 'completed'])
+    )
+
+    await task.save()
+
+    return response.status(200).json({
+      data: task,
+      status: 200
+    })
   }
 
   /**
