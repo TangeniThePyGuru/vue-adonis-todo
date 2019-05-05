@@ -23,5 +23,6 @@ Route.group(() => {
     Route.post('auth/refresh/token', 'UserController.refresh')
 
     Route.resource('projects', 'ProjectController').middleware('auth')
+    Route.resource('projects/:projectId/tasks', 'TaskController').middleware('auth')
 })
   .prefix('api')

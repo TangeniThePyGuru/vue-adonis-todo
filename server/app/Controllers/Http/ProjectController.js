@@ -6,11 +6,17 @@
 
 const Project = use('App/Models/Project')
 const AuthorizationService = use('App/Services/AuthorizationService')
+const BaseController = use('./BaseController')
 
 /**
  * Resourceful controller for interacting with projects
  */
-class ProjectController {
+class ProjectController extends BaseController {
+
+  constructor(){
+    super()
+  }
+
   /**
    * Show a list of all projects.
    * GET projects
