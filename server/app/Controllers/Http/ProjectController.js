@@ -29,7 +29,7 @@ class ProjectController extends BaseController {
   async index ({ request, response, view, auth }) {
     const user = await auth.getUser();
 
-    return user.projects().fetch()
+    return await user.projects().fetch()
   }
 
 
