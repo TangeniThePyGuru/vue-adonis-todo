@@ -66,30 +66,6 @@ class TaskController extends BaseController {
   }
 
   /**
-   * Display a single task.
-   * GET tasks/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show ({ params, request, response, view }) {
-  }
-
-  /**
-   * Render a form to update an existing task.
-   * GET tasks/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
-
-  /**
    * Update task details.
    * PUT or PATCH tasks/:id
    *
@@ -108,7 +84,19 @@ class TaskController extends BaseController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy ({ params, request, response, auth }) {
+    const user = await auth.getUser()
+
+    const task = await Task.find(params.id)
+    AuthorizationService.verifyPermission( await task.project().fetch(), user)
+
+    await task.delete()
+
+    return response.status(200).json({
+      data: task,
+      status: 200
+    })
+
   }
 }
 
