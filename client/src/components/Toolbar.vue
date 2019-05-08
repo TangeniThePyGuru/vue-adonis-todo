@@ -9,7 +9,7 @@
       </v-toolbar-items>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat>
+        <v-btn flat to="/register">
           <v-icon class="mr-2">account_box</v-icon>
           Register
         </v-btn>
