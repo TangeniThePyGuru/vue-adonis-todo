@@ -20,7 +20,7 @@ class UserController {
         username: email
     })
 
-    return user
+    return this.login(...arguments)
   }
 
   async refresh({request, auth}){
