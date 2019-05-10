@@ -12,7 +12,12 @@ export default {
     token: null,
   },
   actions: {
+    logout({commit}) {
+      commit('setToken', null);
+      router.push('/login');
+    },
     register({ commit, state }) {
+      commit('setRegisterError', null);
       return HTTP().post('auth/register', {
         email: state.registerEmail,
         password: state.registerPassword,
@@ -23,6 +28,11 @@ export default {
       }).catch(() => {
         commit('setRegisterError', 'An error has occured trying to create your account')
       });
+    },
+  },
+  getters: {
+    isLoggedIn(state){
+      return !!state.token;
     },
   },
   mutations: {
