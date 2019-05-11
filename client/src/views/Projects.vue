@@ -31,7 +31,7 @@ export default {
     if (!this.isLoggedIn) {
       return router.push('/login');
     }
-    return
+    return;
   },
   computed: {
     ...mapGetters('authentication', [

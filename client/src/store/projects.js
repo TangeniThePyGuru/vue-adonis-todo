@@ -10,8 +10,13 @@ export default {
     projects: [],
   },
   actions: {
+    fetchProjects({ commit }) {
+      return HTTP().get('projects')
+      .then(({ data }) => {
+        commit('setProjects', data)
+      });
+    },
     createProject({commit, state}){
-      // commit('setLoginError', null);
       return HTTP().post('projects', {
         name: state.newProjectName,
       }).then(({ data }) => {
@@ -30,6 +35,9 @@ export default {
     },
     appendProject(state, project) {
       state.projects.push(project)
+    },
+    setProjects(state, projects) {
+      state.projects = projects
     },
   },
 };
