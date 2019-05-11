@@ -1,6 +1,7 @@
 /* eslint-disable */
 // import createPersistedState from 'vuex-persistedstate';
 import authentication from './authentication';
+import projects from './projects';
 
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -12,7 +13,8 @@ export default new Vuex.Store({
     baseURL: '/api',
   },
   modules: {
-    authentication
+    authentication,
+    projects
   },
   mutations: {
 

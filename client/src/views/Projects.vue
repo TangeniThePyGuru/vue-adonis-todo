@@ -15,8 +15,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Projects from '@/components/Projects.vue';
 import Tasks from '@/components/Tasks.vue';
+import router from '../router'
+
 
 export default {
   name: 'projects',
@@ -24,6 +27,16 @@ export default {
     Projects,
     Tasks,
   },
-
+  mounted() {
+    if (!this.isLoggedIn) {
+      return router.push('/login');
+    }
+    return
+  },
+  computed: {
+    ...mapGetters('authentication', [
+      'isLoggedIn',
+    ]),
+  },
 };
 </script>
