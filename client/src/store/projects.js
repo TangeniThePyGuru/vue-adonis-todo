@@ -24,6 +24,12 @@ export default {
         // reset the new project name to null
         commit('setNewProjectName', null)
       });
+    },
+    saveProject({ commit }, project) {
+      return HTTP().put(`projects/${project.id}`, project)
+      .then(({ data }) => {
+        commit('unSetEditMode', project)
+      });
     }
   },
   getters: {
@@ -32,6 +38,9 @@ export default {
   mutations: {
     setNewProjectName(state, name) {
       state.newProjectName = name;
+    },
+    setProjectName(state, {project, name}) {
+      project.name = name;
     },
     appendProject(state, project) {
       state.projects.push(project)

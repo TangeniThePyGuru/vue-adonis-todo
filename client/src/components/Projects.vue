@@ -17,7 +17,10 @@
             v-else
           >
             <v-text-field
+              autofocus
               :value="project.name"
+              @keyup.enter="saveProject(project)"
+              @input="setProjectName({ project, name: $event, })"
             >
 
             </v-text-field>
@@ -29,7 +32,7 @@
             v-if="!project.isEditMode"
             >edit</v-icon>
           <v-icon
-            @click="unSetEditMode(project)"
+            @click="saveProject(project)"
             v-if="project.isEditMode"
             >check</v-icon>
           <!-- TODO: Add delete icon -->
@@ -39,17 +42,20 @@
     <v-layout row wrap>
         <v-flex xs8>
           <v-text-field
+            autofocus
             placeholder="My project name.."
             @input="setNewProjectName"
             :value="newProjectName"
           ></v-text-field>
         </v-flex>
-        <v-flex xs4>
+        <v-flex
+          xs4
+          class="pt-2 pr-4"
+          >
           <v-btn
             color="green"
             @click="createProject"
           ><v-icon
-            class="mr-2"
           >add_circle</v-icon>
             Create
           </v-btn>
@@ -78,10 +84,12 @@ export default {
       'appendProject',
       'setEditMode',
       'unSetEditMode',
+      'setProjectName',
     ]),
     ...mapActions('projects', [
       'createProject',
       'fetchProjects',
+      'saveProject',
     ]),
   },
 };
