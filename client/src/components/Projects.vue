@@ -35,10 +35,15 @@
             @click="saveProject(project)"
             v-if="project.isEditMode"
             >check</v-icon>
-          <!-- TODO: Add delete icon -->
+          <v-icon
+            @click="deleteProject(project)"
+            >delete</v-icon>
         </v-flex>
       </v-layout>
     </div>
+    <v-flex class="pt-4 pb-4" v-if="projects.length < 1">
+      You dont have any projects created!
+    </v-flex>
     <v-layout row wrap>
         <v-flex xs8>
           <v-text-field
@@ -90,6 +95,7 @@ export default {
       'createProject',
       'fetchProjects',
       'saveProject',
+      'deleteProject',
     ]),
   },
 };
