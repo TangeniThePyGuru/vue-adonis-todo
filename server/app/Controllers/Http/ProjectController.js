@@ -88,8 +88,6 @@ class ProjectController extends BaseController {
     const { id } = params
     const project = await Project.find(id)
 
-    console.log(id)
-
     // only the project creater can delete this project
     AuthorizationService.verifyPermission(project, user)
 
