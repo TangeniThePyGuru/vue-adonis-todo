@@ -51,14 +51,16 @@
             placeholder="My project name.."
             @input="setNewProjectName"
             :value="newProjectName"
+            @keyup.enter="createProject"
           ></v-text-field>
         </v-flex>
         <v-flex
           xs4
-          class="pt-2 pr-4"
+          class="pt-1 pr-4"
           >
           <v-btn
             color="green"
+            style="color: white"
             @click="createProject"
           ><v-icon
           >add_circle</v-icon>
