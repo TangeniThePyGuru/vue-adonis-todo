@@ -1,5 +1,5 @@
 /* eslint-disable */
-
+import Vue from 'vue';
 import HTTP from '../http';
 import router from '../router';
 
@@ -38,6 +38,12 @@ export default {
     },
     setProjects(state, projects) {
       state.projects = projects
+    },
+    setEditMode(state, project) {
+      Vue.set(project, 'isEditMode', true);
+    },
+    unSetEditMode(state, project) {
+      Vue.set(project, 'isEditMode', false);
     },
   },
 };
