@@ -44,38 +44,25 @@
     <v-flex class="pt-4 pb-4" v-if="projects.length < 1">
       You dont have any projects created!
     </v-flex>
-    <v-layout row wrap>
-        <v-flex xs8>
-          <v-text-field
-            autofocus
-            placeholder="My project name.."
-            @input="setNewProjectName"
-            :value="newProjectName"
-            @keyup.enter="createProject"
-          ></v-text-field>
-        </v-flex>
-        <v-flex
-          xs4
-          class="pt-1 pr-4"
-          >
-          <v-btn
-            color="green"
-            style="color: white"
-            @click="createProject"
-          ><v-icon
-          >add_circle</v-icon>
-            Create
-          </v-btn>
-        </v-flex>
-      </v-layout>
+
+    <CreateRecord
+      placeholder="My project name...."
+      @onInput="setNewProjectName"
+      :value="newProjectName"
+      @create="createProject"
+      />
+
   </Panel>
 </template>
 
 <script>
 /* eslint-disable */
 import { mapMutations, mapState, mapActions } from 'vuex';
-
+import CreateRecord from './CreateRecord.vue';
 export default {
+  components: {
+    CreateRecord
+  },
   mounted() {
     this.fetchProjects()
   },
