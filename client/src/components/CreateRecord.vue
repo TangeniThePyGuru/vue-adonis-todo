@@ -27,7 +27,6 @@
 
 <script>
 export default {
-  name: 'create-record',
   props: [
     'placeholder',
     'value',
