@@ -1,6 +1,6 @@
 <template>
   <v-toolbar color="green" dark fixed>
-      <v-toolbar-title class="mr-4">Vue Todo</v-toolbar-title>
+      <v-toolbar-title class="mr-4">My Todo</v-toolbar-title>
       <v-toolbar-items v-if="isLoggedIn">
         <v-btn flat>
           <v-icon class="mr-2">playlist_add_check</v-icon>
