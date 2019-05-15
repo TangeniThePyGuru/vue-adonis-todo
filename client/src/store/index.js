@@ -1,5 +1,5 @@
 /* eslint-disable */
-// import createPersistedState from 'vuex-persistedstate';
+import createPersistedState from 'vuex-persistedstate';
 import authentication from './authentication';
 import projects from './projects';
 import tasks from './tasks';
@@ -24,7 +24,7 @@ export default new Vuex.Store({
   actions: {
 
   },
-  // plugins: [
-  //     createPersistedState(),
-  // ],
+  plugins: [
+      createPersistedState(),
+  ],
 });
