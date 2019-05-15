@@ -10,6 +10,7 @@
         :project="project"
         :isEditMode="project.isEditMode"
         :name="project.name"
+        @onClick="projectClicked(project)"
         @onInput="setProjectName({ project, name: $event, })"
         @onSave="saveProject(project)"
         @onDelete="deleteProject(project)"
@@ -50,12 +51,17 @@ export default {
     ])
   },
   methods: {
+    projectClicked(project){
+      this.setCurrentProject(project);
+      this.fetchTasksForCurrentProject(project);
+    },
     ...mapMutations('projects', [
       'setNewProjectName',
       'appendProject',
       'setEditMode',
       'unSetEditMode',
       'setProjectName',
+      'setCurrentProject',
     ]),
     ...mapActions('projects', [
       'createProject',
@@ -63,6 +69,9 @@ export default {
       'saveProject',
       'deleteProject',
     ]),
+    ...mapActions('tasks', [
+      'fetchTasksForCurrentProject'
+    ])
   },
 };
 </script>

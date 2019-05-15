@@ -8,6 +8,7 @@ export default {
   state: {
     newProjectName: null,
     projects: [],
+    currentProject: null,
   },
   actions: {
     fetchProjects({ commit }) {
@@ -43,10 +44,13 @@ export default {
 
   },
   mutations: {
+    setCurrentProject(state, project) {
+      state.currentProject = project;
+    },
     setNewProjectName(state, name) {
       state.newProjectName = name;
     },
-    setProjectName(state, {project, name}) {
+    setProjectName({project, name}) {
       project.name = name;
     },
     appendProject(state, project) {
@@ -55,10 +59,11 @@ export default {
     setProjects(state, projects) {
       state.projects = projects
     },
-    setEditMode(state, project) {
+    setEditMode(project) {
+      console.log(task);
       Vue.set(project, 'isEditMode', true);
     },
-    unSetEditMode(state, project) {
+    unSetEditMode(project) {
       Vue.set(project, 'isEditMode', false);
     },
     removeProject(state, project) {

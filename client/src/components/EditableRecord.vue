@@ -2,7 +2,9 @@
   <v-layout row wrap>
         <v-flex xs9 class="text-xs-left">
           <span
+            id="title"
             v-if="!isEditMode"
+            @click="$emit('onClick')"
           >
             {{ name }}
           </span>
@@ -36,13 +38,16 @@
 <script>
 export default {
   props: [
-    'project',
     'isEditMode',
     'name',
   ],
-}
+};
 </script>
 
 <style>
+
+  #title {
+    cursor: pointer;
+  }
 
 </style>

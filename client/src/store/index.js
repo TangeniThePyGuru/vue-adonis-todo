@@ -2,6 +2,7 @@
 // import createPersistedState from 'vuex-persistedstate';
 import authentication from './authentication';
 import projects from './projects';
+import tasks from './tasks';
 
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -14,7 +15,8 @@ export default new Vuex.Store({
   },
   modules: {
     authentication,
-    projects
+    projects,
+    tasks,
   },
   mutations: {
 

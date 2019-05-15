@@ -5,7 +5,7 @@
         <v-flex xs4>
           <Projects></Projects>
         </v-flex>
-        <v-flex xs8 class="pl-4">
+        <v-flex xs8 class="pl-4" v-if="currentProject">
           <Tasks></Tasks>
         </v-flex>
       </v-layout>
@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import Projects from '@/components/Projects.vue';
 import Tasks from '@/components/Tasks.vue';
-import router from '../router'
+import router from '../router';
 
 
 export default {
@@ -31,11 +31,13 @@ export default {
     if (!this.isLoggedIn) {
       return router.push('/login');
     }
-    return;
   },
   computed: {
     ...mapGetters('authentication', [
       'isLoggedIn',
+    ]),
+    ...mapState('projects', [
+      'currentProject',
     ]),
   },
 };
