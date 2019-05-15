@@ -7,7 +7,6 @@
       class="mb-2 project mt-2"
     >
       <EditableRecord
-          :task="task"
           :isEditMode="task.isEditMode"
           :name="task.description"
           @onInput="setTaskDescription({
@@ -17,7 +16,12 @@
           @onSave="saveTask(task)"
           @onDelete="deleteTask(task)"
           @onEditMode="setEditMode(task)"
-      />
+      >
+        <v-icon
+          @click="checkCompleted(task)">
+          {{ task.completed ? 'check_box' : 'check_box_outline_blank' }}
+        </v-icon>
+      </EditableRecord>
     </div>
 
     <v-flex class="pt-4 pb-4" v-if="tasks.length < 1">
@@ -57,12 +61,17 @@ export default {
       'setNewTaskDescription',
       'setTaskDescription',
       'setEditMode',
+      'toggleCompleted',
     ]),
     ...mapActions('tasks', [
       'createTask',
       'saveTask',
       'deleteTask',
     ]),
+    checkCompleted(task) {
+      this.toggleCompleted(task);
+      this.saveTask(task);
+    },
   },
 };
 </script>

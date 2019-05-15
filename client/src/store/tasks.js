@@ -37,7 +37,7 @@ export default {
         .then(() => {
           commit('removeProject', task)
         });
-    }
+    },
   },
   getters: {
 
@@ -55,16 +55,18 @@ export default {
     appendTask(state, task) {
       state.tasks[state.tasks.length] = task;
     },
-    unSetEditMode(task) {
+    unSetEditMode(state, task) {
       Vue.set(task, 'isEditMode', false);
     },
-    setEditMode(task) {
+    setEditMode(state, task) {
       console.log(task);
-
       Vue.set(task, 'isEditMode', true);
     },
     removeProject(state, task) {
       state.tasks.splice(state.tasks.indexOf(task), 1)
+    },
+    toggleCompleted(state, task) {
+      task.completed = !task.completed;
     }
   },
 };

@@ -7,7 +7,6 @@
       class="mb-2 project mt-2"
     >
       <EditableRecord
-        :project="project"
         :isEditMode="project.isEditMode"
         :name="project.name"
         @onClick="projectClicked(project)"

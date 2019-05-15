@@ -28,7 +28,7 @@ export default {
     },
     saveProject({ commit }, project) {
       return HTTP().put(`projects/${project.id}`, project)
-      .then(({ data }) => {
+      .then(() => {
         commit('unSetEditMode', project)
       });
     },
@@ -59,11 +59,10 @@ export default {
     setProjects(state, projects) {
       state.projects = projects
     },
-    setEditMode(project) {
-      console.log(task);
-      Vue.set(project, 'isEditMode', true);
+    setEditMode(state, project) {
+            Vue.set(project, 'isEditMode', true);
     },
-    unSetEditMode(project) {
+    unSetEditMode(state, project) {
       Vue.set(project, 'isEditMode', false);
     },
     removeProject(state, project) {
