@@ -7,6 +7,7 @@
       class="mb-2 project mt-2"
     >
       <EditableRecord
+          :class="'elevation-2 pa-2 headline'"
           :isEditMode="task.isEditMode"
           :name="task.description"
           @onInput="setTaskDescription({
@@ -18,6 +19,7 @@
           @onEditMode="setEditMode(task)"
       >
         <v-icon
+          v-ripple
           @click="checkCompleted(task)">
           {{ task.completed ? 'check_box' : 'check_box_outline_blank' }}
         </v-icon>

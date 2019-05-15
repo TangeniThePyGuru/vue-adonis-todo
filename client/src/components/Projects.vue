@@ -7,8 +7,10 @@
       class="mb-2 project mt-2"
     >
       <EditableRecord
+        v-ripple
         :isEditMode="project.isEditMode"
         :name="project.name"
+        :class="selected(project) ? 'elevation-10 pa-3 headline' : 'elevation-2 pa-2 headline'"
         @onClick="projectClicked(project)"
         @onInput="setProjectName({ project, name: $event, })"
         @onSave="saveProject(project)"
@@ -46,7 +48,8 @@ export default {
   computed: {
     ...mapState('projects', [
       'newProjectName',
-      'projects'
+      'projects',
+      'currentProject'
     ])
   },
   methods: {
@@ -70,7 +73,10 @@ export default {
     ]),
     ...mapActions('tasks', [
       'fetchTasksForCurrentProject'
-    ])
+    ]),
+    selected(project){
+      return project == this.currentProject;
+    }
   },
 };
 </script>
@@ -82,5 +88,9 @@ export default {
 .icon {cursor: pointer;}
 
 .icon:hover {color: #333;}
+
+.selected {
+  box-shadow: #333;
+}
 
 </style>
