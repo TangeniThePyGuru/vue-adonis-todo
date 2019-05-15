@@ -49,8 +49,10 @@ export default {
     setNewTaskDescription( state , description) {
       state.newTaskDescription = description;
     },
-    setTaskDescription({ task, description }) {
+    setTaskDescription(state, { task, description }) {
+      console.log(description);
       task.description = description;
+      console.log(task);
     },
     appendTask(state, task) {
       state.tasks[state.tasks.length] = task;
